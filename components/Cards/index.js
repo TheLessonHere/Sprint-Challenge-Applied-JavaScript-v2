@@ -17,3 +17,55 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+    .then((data) => {
+        console.log('Article Data Received');
+        data.data.articles.javascript.forEach(array => {
+            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+        });
+        data.data.articles.bootstrap.forEach(array => {
+            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+        });
+        data.data.articles.technology.forEach(array => {
+            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+        });
+        data.data.articles.jquery.forEach(array => {
+            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+        });
+        data.data.articles.node.forEach(array => {
+            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+        });
+    })
+    .catch((error) => {
+        console.log('Article Data Not Available');
+    })
+
+function articleCreator (headlineItem, authorName, authorPhoto) {
+
+    const newCard = document.createElement('div');
+    const headline = document.createElement('div');
+    const author = document.createElement('div');
+    const imgContainer = document.createElement('div');
+    const authorImage = document.createElement('img');
+    const byLine = document.createElement('span');
+
+    newCard.appendChild(headline);
+    newCard.appendChild(author);
+    author.appendChild(imgContainer);
+    author.appendChild(byLine);
+    imgContainer.appendChild(authorImage);
+
+    newCard.classList.add('card');
+    headline.classList.add('headline');
+    author.classList.add('author');
+    imgContainer.classList.add('img-container');
+
+    headline.textContent = headlineItem;
+    authorImage.src = authorPhoto;
+    byLine.textContent = `By ${authorName}`;
+
+    return newCard
+}
+
+const cardsContainer = document.querySelector('.cards-container');

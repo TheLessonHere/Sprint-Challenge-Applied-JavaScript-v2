@@ -10,13 +10,13 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
     .then((data) => {
-        console.log('Data Received', data);
+        console.log('Tabs Data Received', data);
         data.data.topics.forEach((topic) => {
             topicsContainer.appendChild(tabCreator(topic));
         });
     })
     .catch((error) => {
-        console.log('Data Not Available');
+        console.log('Tabs Data Not Available');
     })
 
 function tabCreator (topic) {
