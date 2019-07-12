@@ -12,7 +12,19 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
     .then((data) => {
         console.log('Tabs Data Received', data);
         data.data.topics.forEach((topic) => {
-            topicsContainer.appendChild(tabCreator(topic));
+            let newTab = tabCreator(topic);
+            newTab.classList.add(`${topic}`);
+            topicsContainer.appendChild(newTab);
+            newTab.addEventListener('click', (event) => {
+                let cards = document.querySelectorAll('.card');
+                cards.forEach((card) => {
+                    if (card.dataset.articleTopic !== `${topic}`) {
+                        card.style.display = 'none';
+                    } else {
+                        card.style.display = 'flex';
+                    }
+                })
+            })
         });
     })
     .catch((error) => {

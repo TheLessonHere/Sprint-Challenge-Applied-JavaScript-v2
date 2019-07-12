@@ -22,19 +22,29 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then((data) => {
         console.log('Article Data Received');
         data.data.articles.javascript.forEach(array => {
-            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+            let javascriptArticle = articleCreator(array.headline, array.authorName, array.authorPhoto);
+            javascriptArticle.dataset.articleTopic = 'javascript';
+            cardsContainer.appendChild(javascriptArticle);
         });
         data.data.articles.bootstrap.forEach(array => {
-            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+            let bootstrapArticle = articleCreator(array.headline, array.authorName, array.authorPhoto);
+            bootstrapArticle.dataset.articleTopic = 'bootstrap';
+            cardsContainer.appendChild(bootstrapArticle);
         });
         data.data.articles.technology.forEach(array => {
-            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+            let technologyArticle = articleCreator(array.headline, array.authorName, array.authorPhoto);
+            technologyArticle.dataset.articleTopic = 'technology';
+            cardsContainer.appendChild(technologyArticle);
         });
         data.data.articles.jquery.forEach(array => {
-            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+            let jqueryArticle = articleCreator(array.headline, array.authorName, array.authorPhoto);
+            jqueryArticle.dataset.articleTopic = 'jquery';
+            cardsContainer.appendChild(jqueryArticle);
         });
         data.data.articles.node.forEach(array => {
-            cardsContainer.appendChild(articleCreator(array.headline, array.authorName, array.authorPhoto));
+            let nodeArticle = articleCreator(array.headline, array.authorName, array.authorPhoto);
+            nodeArticle.dataset.articleTopic = 'node.js';
+            cardsContainer.appendChild(nodeArticle);
         });
     })
     .catch((error) => {
